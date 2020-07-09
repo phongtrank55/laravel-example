@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 
-class PhotoController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,11 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        // $category = Category::create([
+        //     'name' => 'acer', 'description' => 'Mô tả acer'
+        // ]);
+        // $category->save();
+        return view('category.index');
     }
 
     /**

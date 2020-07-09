@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Router::prefix('category')->name('category.')->group(function(){
-    Router::get('index', 'CategoryController@index')->name('index');
-    Router::get('edit/{id}', 'CategoryController@edit')->name('edit');
-    Router::get('create', 'CategoryController@create')->name('create');
-    Router::post('store', 'CategoryController@store')->name('store');
-    Router::post('update', 'CategoryController@update')->name('update');
-    Router::post('delete', 'CategoryController@delete')->name('delete');
+Route::prefix('category')->name('category.')->group(function(){
+    
+    Route::get('/', 'CategoryController@index')->name('index');
+    Route::get('edit/{id}', 'CategoryController@edit')->name('edit');
+    Route::get('create', 'CategoryController@create')->name('create');
+    Route::post('store', 'CategoryController@store')->name('store');
+    Route::post('update', 'CategoryController@update')->name('update');
+    Route::post('delete', 'CategoryController@delete')->name('delete');
 });
