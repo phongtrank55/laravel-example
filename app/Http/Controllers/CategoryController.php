@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,7 +19,8 @@ class CategoryController extends Controller
         //     'name' => 'acer', 'description' => 'Mô tả acer'
         // ]);
         // $category->save();
-        return view('category.index');
+        $categories = Category::get();
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -29,6 +31,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        // return Str::slug('Xé gió', '-');
+        return view('category.create');
     }
 
     /**
@@ -40,6 +44,28 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request->slug;
+        // $data = $request->all();
+        // $category = Category::create($data); // need fillable in model
+
+        $category = new Category;
+        $category->name = $request->name;
+        $category->description = $request->description;
+        
+        $slug = $request->slug;
+        // // check exists slug
+        // while(Category::where('slug', $slug)->exists()){
+        //     $slug = $slug.'-'.rand(1,100);
+        // }
+        $category->slug = $slug;
+        $category->save();
+
+        return redirect()->route('category.index')->with(['alert' => [
+            'type' => 'success',
+            'title' => 'Successful',
+            'content' => 'Added new category.'
+          ]]);
+      
     }
 
     /**

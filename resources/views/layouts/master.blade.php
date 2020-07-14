@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('common/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('common/css/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('common/css/fontawesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/sweetalert2.min.css') }}">
@@ -20,6 +20,13 @@
 <body>
     <h3 class="text-center">{{ config('app.name') }} </h3>
     <div class="container">
+        @if(session('alert'))
+            <div class="alert alert-{{ session('alert')['type'] }}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>{{ session('alert')['title'] }}</strong> {{session('alert')['content']}}
+            </div>
+        @endif
+    
         @yield('content')
     </div>
     <!-- Embed Scripts -->
