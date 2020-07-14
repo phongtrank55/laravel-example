@@ -12,13 +12,14 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['name' => 'HP', 'description' => 'Mô tả HP'],
-            ['name' => 'Asus', 'description' => 'Mô tả ASUS'],            
+            ['name' => 'HP', 'slug' => 'hp', 'description' => 'Mô tả HP'],
+            ['name' => 'Asus', 'slug' => 'asus', 'description' => 'Mô tả ASUS'],            
         ];
         foreach($categories as $category){
             DB::table('categories')->insert([
                 'name' => $category['name'],
                 'description' => $category['description'],
+                'slug' => $category['slug'],
                 'created_at'  =>  date('Y-m-d H:i:s', strtotime('now')),
                 'updated_at'  =>  date('Y-m-d H:i:s', strtotime('now')),
             ]);

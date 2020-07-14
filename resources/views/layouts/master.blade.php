@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('common/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('common/css/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('common/css/fontawesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('common/css/sweetalert2.min.css') }}">
