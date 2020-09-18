@@ -14,7 +14,7 @@ class UpdateCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->bigInteger('count')->nullable()->default(0)->after('description');
+            $table->string('description')->nullable()->default(0)->after('name');
             $table->string('name', 200)->change();
             $table->dropColumn('note');
         });
@@ -28,7 +28,7 @@ class UpdateCategoriesTable extends Migration
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('count');
+            $table->dropColumn('description');
             $table->bigInteger('name')->nullable()->default(12)->change();
             $table->string('note')->nullable();
         });

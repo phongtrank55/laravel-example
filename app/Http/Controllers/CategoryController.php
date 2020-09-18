@@ -85,9 +85,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($slug, $id)
     {
-        //
+        // return $id;
+        $category = Category::findOrFail($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -97,9 +99,21 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        // return $request;
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->slug = $request->slug;
+        $category->save();
+
+        return redirect()->route('category.index')->with(['alert' => [
+            'type' => 'success',
+            'title' => 'Successful',
+            'content' => 'Updated new category.'
+          ]]);
+              
     }
 
     /**
@@ -108,8 +122,25 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        //
+        // return $request;
+        $category = Category::findOrFail($id);
+        $alert ='';
+        try{
+            $category->delete();
+            $alert = [
+                'type' => 'success',
+                'title' => 'Successful',
+                'content' => 'Deleted category!'
+            ];
+        }
+        catch(\Exception $e){
+            $alert = [
+                'type' => 'error',
+                'title' => 'Failed',
+                'content' => "Can't delete category"
+            ];
+        }
     }
 }

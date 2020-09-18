@@ -26,6 +26,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        // $schedule->command('product_category:insert test_name_1 test-name-1 --force')->daily();
+        $schedule->command('product_category:insert test_name_1 test-name-1')
+        ->everyMinute()
+        ->sendOutputTo('E:/log.txt');
     }
 
     /**
