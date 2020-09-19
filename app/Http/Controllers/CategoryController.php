@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\CategoryExport;
 
 class CategoryController extends Controller
 {
@@ -142,5 +143,13 @@ class CategoryController extends Controller
                 'content' => "Can't delete category"
             ];
         }
+    }
+
+    public function export(Request $request){
+        // return 'ok';
+        $categories = Category::all();
+
+        return (new CategoryExport())->download('categories.xlsx');
+        
     }
 }

@@ -5,7 +5,12 @@
 @section('content')
     <h3>Categories</h3>
     <div class="box pull-right">
-        <a href="{{ route('category.create') }}" class="btn btn-md btn-primary"><i class="fa fa-plus"></i> Create </a>
+        <form action="{{route('category.export')}}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-md btn-success"><i class="fa fa-file-excel-o"></i> Xuất excel</button>
+            <a href="{{ route('category.create') }}" class="btn btn-md btn-primary"><i class="fa fa-plus"></i> Create </a>
+        </form>
+        
     </div>
 
     <br><br>

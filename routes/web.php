@@ -23,4 +23,6 @@ Route::prefix('category')->name('category.')->group(function(){
     Route::post('store', 'CategoryController@store')->name('store');
     Route::post('{id}/update', 'CategoryController@update')->name('update');
     Route::post('delete', 'CategoryController@destroy')->name('delete');
+
+    Route::post('export', 'CategoryController@export')->name('export');
 });
