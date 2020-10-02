@@ -20,13 +20,7 @@
 <body>
     <h3 class="text-center">{{ config('app.name') }} </h3>
     <div class="container">
-        @if(session('alert'))
-            <div class="alert alert-{{ session('alert')['type'] }}">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <strong>{{ session('alert')['title'] }}</strong> {{session('alert')['content']}}
-            </div>
-        @endif
-    
+        @include('layouts.alert')
         @yield('content')
     </div>
     <!-- Embed Scripts -->

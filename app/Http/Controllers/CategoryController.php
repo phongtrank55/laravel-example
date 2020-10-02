@@ -48,6 +48,21 @@ class CategoryController extends Controller
         // return $request->slug;
         // $data = $request->all();
         // $category = Category::create($data); // need fillable in model
+        $request->validate(
+            [
+                'name' => "required|unique:categories,name,0,id,deleted_at,NULL",
+            ],
+            [
+                'required' => ':attribute Không được để trống!',
+                'unique' => ':attribute Đã đc sử dụng!',
+                
+            ],
+            [
+                
+                'name' => 'Tên danh mục',
+            ]
+        );
+
 
         $category = new Category;
         $category->name = $request->name;
@@ -104,6 +119,21 @@ class CategoryController extends Controller
     {
         // return $request;
         $category = Category::findOrFail($id);
+        $request->validate(
+            [
+                'name' => 'required|unique:categories,name,'.$id.',id,deleted_at,NULL',
+            ],
+            [
+                'required' => ':attribute Không được để trống!',
+                'unique' => ':attribute Đã đc sử dụng!',
+                
+            ],
+            [
+                
+                'name' => 'Tên danh mục',
+            ]
+        );
+
         $category->name = $request->name;
         $category->description = $request->description;
         $category->slug = $request->slug;
@@ -125,8 +155,7 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request)
     {
-        // return $request;
-        $category = Category::findOrFail($id);
+        $category = Category::findOrFail($request->id);
         $alert ='';
         try{
             $category->delete();
@@ -143,6 +172,7 @@ class CategoryController extends Controller
                 'content' => "Can't delete category"
             ];
         }
+        return redirect()->back()->with(compact('alert'));
     }
 
     public function export(Request $request){
