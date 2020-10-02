@@ -147,8 +147,12 @@ class CategoryController extends Controller
 
     public function export(Request $request){
         // return 'ok';
-        $categories = Category::all();
-
+        // $categories = Category::all();
+        // return redirect()->route('category.index')->with(['alert' => [
+        //     'type' => 'warning',
+        //     'title' => 'Please wait...',
+        //     'content' => 'Export is processing'
+        //   ]]);
         return (new CategoryExport())->download('categories.xlsx');
         
     }
