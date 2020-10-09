@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/test-api', function () {
+    return response()->json('Hello, Test API', 200);
+    // return 'hello';
+});
+
+Route::get('categories', function () {
+    return \App\Category::get(); 
+});
